@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moviemasterdetail.adapter.MovieAdapter
 import com.example.moviemasterdetail.db.MovieDbHelper
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
 
         val rvMovies = findViewById<RecyclerView>(R.id.rvMovies)
         val fabAdd   = findViewById<FloatingActionButton>(R.id.fabAdd)
+
+        val toolbar = findViewById<MaterialToolbar>(R.id.topAppBar)
+        setSupportActionBar(toolbar)
 
         db = MovieDbHelper(this)
         adapter = MovieAdapter(db.getAllMovies()) { movie ->
@@ -39,6 +43,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, DetailActivity::class.java))
         }
     }
+
 
     override fun onResume() {
         super.onResume()
